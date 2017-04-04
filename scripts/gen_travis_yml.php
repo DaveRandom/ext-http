@@ -12,7 +12,6 @@ addons:
    - libcurl4-openssl-dev
    - libidn11-dev
    - libidn2-0-dev
-   - libicu-dev
    - libevent-dev
 
 env:
@@ -20,7 +19,7 @@ env:
 
 $gen = include "./travis/pecl/gen-matrix.php";
 $env = $gen([
-	"PHP" => ["7.0", "7.1", "master"],
+	"PHP" => ["7.0"],
 	"enable_debug",
 	"enable_maintainer_zts",
 	"enable_json",
@@ -33,8 +32,6 @@ foreach ($env as $e) {
 }
 
 ?>
-# once with gcov
- - CFLAGS="-O0 -g --coverage" CXXFLAGS="-O0 -g --coverage" PHP=master enable_json=yes enable_hash=yes enable_iconv=yes 
 
 before_script:
  - make -f travis/pecl/Makefile php
